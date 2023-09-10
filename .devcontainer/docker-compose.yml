@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ..:/workspaces/VaporDevcontainer
+      - build-dir:/workspaces/VaporDevcontainer/.build
+      - swift-format-build-dir:/workspaces/swift-format
+    command: sleep infinity
+    init: true
+
+volumes:
+  build-dir:
+  swift-format-build-dir:

@@ -1,10 +1,21 @@
+x-shared_environment: &shared_environment
+  LOG_LEVEL: ${LOG_LEVEL:-debug}
+  DATABASE_HOST: db
+  DATABASE_NAME: vapor_database
+  DATABASE_USERNAME: vapor_username
+  DATABASE_PASSWORD: vapor_password
+
 services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+    environment:
+      <<: *shared_environment
     ports:
       - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - ..:/workspaces/VaporDevcontainer
       - build-dir:/workspaces/VaporDevcontainer/.build
@@ -12,6 +23,24 @@ services:
     command: sleep infinity
     init: true
 
+  db:
+    image: postgres:15
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: vapor_username
+      POSTGRES_PASSWORD: vapor_password
+      POSTGRES_DB: vapor_database
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+
 volumes:
   build-dir:
   swift-format-build-dir:
+  db-data:

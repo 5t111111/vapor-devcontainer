@@ -18,8 +18,8 @@ services:
         condition: service_healthy
     volumes:
       - ..:/workspaces/VaporDevcontainer
-      - build-dir:/workspaces/VaporDevcontainer/.build
-      - swift-format-build-dir:/workspaces/swift-format
+      - app-build-dir:/workspaces/VaporDevcontainer/.build
+      - src-build-dir:/workspaces/src
     command: sleep infinity
     init: true
 
@@ -33,7 +33,7 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: [ "CMD-SHELL", "pg_isready" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -41,6 +41,6 @@ services:
       - db-data:/var/lib/postgresql/data/pgdata
 
 volumes:
-  build-dir:
-  swift-format-build-dir:
+  app-build-dir:
+  src-build-dir:
   db-data:

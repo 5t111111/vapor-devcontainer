@@ -44,3 +44,9 @@ Get todos:
 ```shell
 curl http://127.0.0.1:8080/todos
 ```
+
+Automatically restart application on file changes via [Reflex](https://github.com/cespare/reflex):
+
+```shell
+reflex -r '\.swift$' -R '^.build/' -s -- swift run App
+```

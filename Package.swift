@@ -8,7 +8,7 @@ let package = Package(
   ],
   dependencies: [
     // 💧 A server-side Swift web framework.
-    .package(url: "https://github.com/vapor/vapor.git", from: "4.92.0"),
+    .package(url: "https://github.com/vapor/vapor.git", from: "4.92.2"),
     // 🗄 An ORM for SQL and NoSQL databases.
     .package(url: "https://github.com/vapor/fluent.git", from: "4.9.0"),
     // 🐘 Fluent driver for Postgres.

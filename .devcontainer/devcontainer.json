@@ -19,7 +19,7 @@
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true,
-      "username": "vscode",
+      "username": "vapor",
       "userUid": "1000",
       "userGid": "1000"
     },
@@ -39,7 +39,7 @@
   // "shutdownAction": "none",
 
   // Uncomment the next line to run commands after the container is created.
-  "postCreateCommand": ".devcontainer/postCreateCommand.bash",
+  "postCreateCommand": "swift --version && swift-format --version",
 
   // Configure tool-specific properties.
   "customizations": {
@@ -60,8 +60,8 @@
         "ms-azuretools.vscode-docker"
       ]
     }
-  }
+  },
 
   // Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-  // "remoteUser": "vapor"
+  "remoteUser": "vapor"
 }

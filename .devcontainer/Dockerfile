@@ -1,26 +1,20 @@
 FROM swift:5.9-jammy
 
-ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 ENV APP_ROOT=/workspaces/vapor-devcontainer
 
-# Add non-root user
-RUN groupadd --gid ${USER_GID} ${USERNAME} \
-    && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME}
+# Install apple/swift-format
+ENV SWIFT_FORMAT_VERSION="509.0.0"
+RUN git clone https://github.com/apple/swift-format.git \
+    && cd swift-format \
+    && git checkout "tags/$SWIFT_FORMAT_VERSION" \
+    && swift build -c release \
+    && cp .build/release/swift-format /usr/local/bin/
 
 WORKDIR ${APP_ROOT}
 
-# Set build directory permissions
+# Set .build directory permissions
 RUN mkdir .build \
     && chown -R ${USER_UID}:${USER_GID} .build
-
-USER ${USERNAME}
-
-# Install Mint
-RUN cd ${HOME} \
-    && git clone https://github.com/yonaskolb/Mint.git \
-    && cd Mint \
-    && swift run mint install yonaskolb/mint
-ENV PATH="/home/${USERNAME}/.mint/bin:${PATH}"

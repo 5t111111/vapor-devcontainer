@@ -11,20 +11,21 @@ services:
       context: .
     environment:
       <<: *shared_environment
-    ports:
-      - "8080:8080"
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ..:/workspaces/vapor-devcontainer
-      - app-build-dir:/workspaces/vapor-devcontainer/.build
-      - src-build-dir:/workspaces/src
+      - build-dir:/workspaces/vapor-devcontainer/.build
     command: sleep infinity
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
     init: true
 
   db:
-    image: postgres:15
+    image: postgres:16
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: vapor_username
@@ -41,6 +42,5 @@ services:
       - db-data:/var/lib/postgresql/data/pgdata
 
 volumes:
-  app-build-dir:
-  src-build-dir:
+  build-dir:
   db-data:

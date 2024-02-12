@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-APP_DIR=/workspaces/VaporDevcontainer
+APP_DIR=/workspaces/vapor-devcontainer
 SRC_DIR=/workspaces/src
 
 # Install Vapor Toolbox

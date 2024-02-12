@@ -5,9 +5,9 @@
       "request": "launch",
       "sourceLanguages": ["swift"],
       "name": "Debug App",
-      "program": "${workspaceFolder:VaporDevcontainer}/.build/debug/App",
+      "program": "${workspaceFolder:vapor-devcontainer}/.build/debug/App",
       "args": [],
-      "cwd": "${workspaceFolder:VaporDevcontainer}",
+      "cwd": "${workspaceFolder:vapor-devcontainer}",
       "preLaunchTask": "swift: Build Debug App"
     },
     {
@@ -15,9 +15,9 @@
       "request": "launch",
       "sourceLanguages": ["swift"],
       "name": "Release App",
-      "program": "${workspaceFolder:VaporDevcontainer}/.build/release/App",
+      "program": "${workspaceFolder:vapor-devcontainer}/.build/release/App",
       "args": [],
-      "cwd": "${workspaceFolder:VaporDevcontainer}",
+      "cwd": "${workspaceFolder:vapor-devcontainer}",
       "preLaunchTask": "swift: Build Release App"
     }
   ]

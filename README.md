@@ -6,6 +6,7 @@ This is a PoC for developing Vapor with Visual Studio Code + Development Contain
 - [x] Breakpoint debugging via CodeLLDB
 - [x] Auto formatting via apple/swift-format
 - [x] Persistent data in PostgreSQL database via Fluent
+- [x] Automatic application restart on file changes via [Reflex](https://github.com/cespare/reflex)
 
 ## Getting started
 
@@ -45,7 +46,7 @@ Get todos:
 curl http://127.0.0.1:8080/todos
 ```
 
-Automatically restart application on file changes via [Reflex](https://github.com/cespare/reflex):
+Automatically restart application on file changes:
 
 ```shell
 reflex -r '\.swift$' -R '^.build/' -s -- swift run App
